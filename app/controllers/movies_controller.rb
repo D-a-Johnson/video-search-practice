@@ -3,13 +3,13 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    if params['category'].blank? || params['category']['id'].blank?
+    if params['category'].blank? || params['category']['id'].blank? #checks if either the search or category is blank
       @movies = Movie.all
     else
-      category = Category.find(params['category']['id'])
+      category = Category.find(params['category']['id']) #puts all from the correct category
       @movies = category.movies
     end
-    @movies = @movies.search(params[:search])
+    @movies = @movies.search(params[:search]) #final search after going through catgories
   end
 
   # GET /movies/1 or /movies/1.json
