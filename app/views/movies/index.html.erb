@@ -1,3 +1,16 @@
+<br>
+
+<%= form_tag(movies_path, method: :get) do %>
+	<%= text_field_tag :search, params[:search] %>
+	<%= collection_select :category, :id, Category.all.order('name ASC'), :id, :name,{include_blank: 'Select Category'} %>
+	<%= submit_tag 'Search', name: nil %>
+<% end %>
+
+<br>
+<!-- In case I add new movie -->
+<%= link_to 'New Movie', new_movie_path %>
+<br>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Movies</h1>
@@ -12,18 +25,19 @@
   </thead>
 
   <tbody>
+<% if (@movies.empty?) %>
+<p> No Results </p>
+<% else %>
     <% @movies.each do |movie| %>
       <tr>
         <td><%= movie.title %></td>
-        <td><%= movie.category %></td>
-        <td><%= link_to 'Show', movie %></td>
+        <td><%= movie.category.name %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+<% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Movie', new_movie_path %>
