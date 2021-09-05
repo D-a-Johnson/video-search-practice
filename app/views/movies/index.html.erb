@@ -8,6 +8,7 @@
 
 <br>
 <!-- In case I add new movie -->
+<!-- underconstruction-->
 <%= link_to 'New Movie', new_movie_path %>
 <br>
 
@@ -32,6 +33,7 @@
       <tr>
         <td><%= movie.title %></td>
         <td><%= movie.category.name %></td>
+	<!-- Edit underconstruction-->
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
